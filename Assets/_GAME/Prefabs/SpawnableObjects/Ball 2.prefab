@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3802085767182180897}
   - component: {fileID: 3811783290741918185}
   - component: {fileID: 7900149842567682396}
-  - component: {fileID: 5793222550581267038}
+  - component: {fileID: 2090394099523305237}
   m_Layer: 0
   m_Name: Ball 2
   m_TagString: Toy
@@ -115,7 +115,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.036595814
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5793222550581267038
+--- !u!114 &2090394099523305237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,8 +124,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3796942597371436665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6ebb16bdbaa95b4d88db8c3f0a18957, type: 3}
+  m_Script: {fileID: 11500000, guid: 3003183ff46c9d44cbf311bf4cecfd44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UseObjectMass: 1
-  forceMultiplier: 20
+  PhysicalDamage: 0
+  ObjectLevel: 1
+  Landed: 0
+  Rigidbody: {fileID: 0}

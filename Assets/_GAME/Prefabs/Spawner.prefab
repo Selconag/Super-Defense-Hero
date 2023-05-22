@@ -179,13 +179,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3836742900846159304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 869d1266c2b11fb4c9fe4fe4b017aaaf, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ebb64965eaa9da4b994af4ab5fea67a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   t_SpawnPos: {fileID: 3836742900846159305}
   m_SpawnObjects:
-  - {fileID: 8621511543041310852, guid: 19b0f4f184538384293aa31c542e33a6, type: 3}
-  - {fileID: 7190843362804398914, guid: d898ed9a89bc80c40a1ea4ac8412534e, type: 3}
+  - {fileID: 332006175147240479, guid: 3b01d2ad6aefb1149891e3357756a678, type: 3}
+  newSpawnDuration: 5
 --- !u!114 &3836742900846159303
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5694161469568096429}
   - component: {fileID: 5695972385824323160}
-  - component: {fileID: 5695972385824323174}
   - component: {fileID: 5727547312031328167}
   - component: {fileID: 5717469940154703751}
   - component: {fileID: 5695972385824323161}
+  - component: {fileID: 4949482166985136739}
   m_Layer: 0
   m_Name: Bowling pin
   m_TagString: Toy
@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -51,20 +52,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5695972385824323174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5695972385824323163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6ebb16bdbaa95b4d88db8c3f0a18957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UseObjectMass: 1
-  forceMultiplier: 10
 --- !u!33 &5727547312031328167
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -84,6 +71,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -129,3 +117,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f87e92c379bcf7249940a492997591ac, type: 3}
+--- !u!114 &4949482166985136739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5695972385824323163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3003183ff46c9d44cbf311bf4cecfd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PhysicalDamage: 0
+  ObjectLevel: 1
+  Landed: 0
+  Rigidbody: {fileID: 0}

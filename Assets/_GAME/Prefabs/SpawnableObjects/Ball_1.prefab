@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 961916226826494890}
   - component: {fileID: 960141406116667862}
-  - component: {fileID: 960141406116667861}
   - component: {fileID: 960141406116667863}
   - component: {fileID: 945771881058434734}
   - component: {fileID: 937953541181943270}
+  - component: {fileID: -8859906764791745906}
   m_Layer: 0
   m_Name: Ball_1
   m_TagString: Toy
@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 20}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -51,20 +52,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &960141406116667861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960141406116667860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6ebb16bdbaa95b4d88db8c3f0a18957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UseObjectMass: 1
-  forceMultiplier: 40
 --- !u!135 &960141406116667863
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -97,6 +84,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -128,3 +116,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-8859906764791745906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960141406116667860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3003183ff46c9d44cbf311bf4cecfd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PhysicalDamage: 0
+  ObjectLevel: 1
+  Landed: 0
+  Rigidbody: {fileID: 0}

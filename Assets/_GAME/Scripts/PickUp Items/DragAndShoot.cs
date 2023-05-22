@@ -65,9 +65,6 @@ public class DragAndShoot : MonoBehaviour
                 objectToThrow = null;
                 isShoot = false;
             }
-
-
-            
         }
     }
 
@@ -78,8 +75,9 @@ public class DragAndShoot : MonoBehaviour
         
         //X => Force.x / Y => Force.y / Z => Force.y because on screen it is only X&Y Dimensions
         objectToThrow.AddForce(new Vector3(Force.x, Force.y, Force.y) * forceMultiplier);
-        
-        Spawner.Instance.NewSpawnRequest();
+        objectToThrow.constraints = RigidbodyConstraints.None;
+        objectToThrow.GetComponent<ThrowableObject>().Landed = false;
+        ObjectSpawner.Instance.NewSpawnRequest();
         isShoot = true;        
     }
 

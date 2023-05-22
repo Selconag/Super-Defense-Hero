@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2876418222930840735}
   - component: {fileID: 2865118563121960717}
   - component: {fileID: 6027124387008317936}
-  - component: {fileID: 2238447759936089211}
+  - component: {fileID: 3309706910277451014}
   m_Layer: 0
   m_Name: Glue
   m_TagString: Toy
@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.08715574, w: 0.9961947}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 22, y: 22, z: 22}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -70,6 +71,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -114,7 +116,7 @@ CapsuleCollider:
   m_Height: 0.10328144
   m_Direction: 1
   m_Center: {x: 0, y: 0.0000000018626451, z: -9.313226e-10}
---- !u!114 &2238447759936089211
+--- !u!114 &3309706910277451014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,8 +125,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2852577005283398271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6ebb16bdbaa95b4d88db8c3f0a18957, type: 3}
+  m_Script: {fileID: 11500000, guid: 3003183ff46c9d44cbf311bf4cecfd44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UseObjectMass: 1
-  forceMultiplier: 8
+  PhysicalDamage: 0
+  ObjectLevel: 1
+  Landed: 0
+  Rigidbody: {fileID: 0}

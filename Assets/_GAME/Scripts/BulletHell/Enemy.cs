@@ -11,11 +11,12 @@ public class Enemy : MonoBehaviour
     [Header("Variables")]
     private bool lastEnemy;
     private bool firstEnable = false;
-    [SerializeField] private int health;
+    [SerializeField] private float health;
     [SerializeField] private bool walkEnd = false;
     [SerializeField] private Vector3 MoveDirection;
     [Range(0.01f,2f)]
     [SerializeField] private float speedCoefficient;
+    public List<string> DamageTags;
 
     [Header("References")]
     [SerializeField] private EntityProperties m_EnemyProperties;
@@ -36,10 +37,15 @@ public class Enemy : MonoBehaviour
 		set { lastEnemy = true; }
 	}
 
-    public int Health
+    public float Health
     {
         get { return health; }
         set { health = value; }
+    }
+
+    public float HealthChange
+    {
+        set { health -= value; }
     }
 
     public Transform Target
@@ -57,10 +63,10 @@ public class Enemy : MonoBehaviour
  //       m_Rend = transform.GetChild(0).GetComponent<Renderer>();
  //   }
 
-	void Start()
-    {
-        health = m_EnemyProperties.Health;
-    }
+	//void Start()
+ //   {
+ //       health = m_EnemyProperties.Health;
+ //   }
 
 	void Update()
 	{
@@ -83,7 +89,7 @@ public class Enemy : MonoBehaviour
             //If no health left, enemy dies
             if (health <= 0)
             {
-                Player.playerGainExp.Invoke(m_EnemyProperties.Experience);
+                //Player.playerGainExp.Invoke(m_EnemyProperties.Experience);
                 StartCoroutine(DespawnWaiter());
             }
             //If enemy survives, apply knockback
@@ -96,30 +102,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.tag == "Bullet")
-        {
-            //if (!col.transform.gameObject.GetComponent<Bullet>().IsPiercingBullet)
-            //    LeanPool.Despawn(col.gameObject);
-            //col.gameObject.GetComponent<Bullet>().DecreasePierce = 1;
-            StartCoroutine(FlashEffect());
-            health--;
-            //If no health left, enemy dies
-            if (health <= 0)
-            {
-                Player.playerGainExp.Invoke(m_EnemyProperties.Experience);
-                StartCoroutine(DespawnWaiter());
-            }
-            //If enemy survives, apply knockback
-            else
-            {
-                //m_Rigid.AddForce(Vector3.back * 1000f, ForceMode.Force);
-
-            }
-
-        }
-    }
     private IEnumerator FlashEffect()
 	{
         //Apply flash effects
@@ -141,8 +123,7 @@ public class Enemy : MonoBehaviour
         m_Controller.enabled = false;
         StopEnemy();
         yield return new WaitForSeconds(1.5f);
-        //LeanPool.Despawn(this.gameObject);
-
+        LeanPool.Despawn(this.gameObject);
     }
 
     private void StopEnemy()
@@ -153,30 +134,47 @@ public class Enemy : MonoBehaviour
         transform.LookAt(m_Target);
 	}
 
-    private void OnEnable()
-    {
-        if(firstEnable)
-        m_Target = GameObject.FindGameObjectWithTag("Player").transform;
-        firstEnable = true;
-        walkEnd = false;
-        m_Controller.enabled = true;
-        health = m_EnemyProperties.Health;
+  //  private void OnEnable()
+  //  {
+  //      if(firstEnable)
+  //      m_Target = GameObject.FindGameObjectWithTag("Player").transform;
+  //      firstEnable = true;
+  //      walkEnd = false;
+  //      m_Controller.enabled = true;
+  //      health = m_EnemyProperties.Health;
 
-        if (Player.playerDeath) StopEnemy();
-        else Player.playerDeathEvent += StopEnemy;
-    }
+  //      if (Player.playerDeath) StopEnemy();
+  //      else Player.playerDeathEvent += StopEnemy;
+  //  }
 
-    private void OnDisable()
+  //  private void OnDisable()
+  //  {
+  //      //If this was last enemy, Invoke level end with success
+  //      if (lastEnemy)
+		//{
+  //          if(GameObject.FindGameObjectsWithTag("Enemy").Length <= 1)
+  //              GameManager.levelEndStatus.Invoke(true);
+  //          Debug.Log("Last Enemy Killed");
+  //          lastEnemy = false;
+  //      }
+  //      walkEnd = false;
+  //      Player.playerDeathEvent -= StopEnemy;
+  //  }
+
+
+    #region TakeDamage Efects
+    public void TakeDamageAndEffect(float damageAmount, DamageEffects effect = DamageEffects.None)
     {
-        //If this was last enemy, Invoke level end with success
-        if (lastEnemy)
-		{
-            if(GameObject.FindGameObjectsWithTag("Enemy").Length <= 1)
-                GameManager.levelEndStatus.Invoke(true);
-            Debug.Log("Last Enemy Killed");
-            lastEnemy = false;
+        HealthChange = damageAmount;
+        StartCoroutine(FlashEffect());
+        if (Health <= 0)
+        {
+            StartCoroutine(DespawnWaiter());
         }
-        walkEnd = false;
-        Player.playerDeathEvent -= StopEnemy;
     }
+    #endregion
+
+    #region Behavioral Parts
+
+    #endregion
 }

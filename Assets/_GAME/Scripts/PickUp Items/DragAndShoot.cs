@@ -77,7 +77,7 @@ public class DragAndShoot : MonoBehaviour
         objectToThrow.AddForce(new Vector3(Force.x, Force.y, Force.y) * forceMultiplier);
         objectToThrow.constraints = RigidbodyConstraints.None;
         objectToThrow.GetComponent<ThrowableObject>().Landed = false;
-        ObjectSpawner.Instance.NewSpawnRequest();
+        StartCoroutine(ObjectSpawner.Instance.NewSpawnRequest());
         isShoot = true;        
     }
 

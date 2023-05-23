@@ -15,34 +15,6 @@ public class Mine : ThrowableObject
     public SphereCollider OuterExplosionZone;
     [SerializeField] private TriggerDetector detector;
 
-    //private void OnCollisionEnter(Collision other)
-    //{
-    //    if (other.transform.tag == "Ground" && !exploded)
-    //    {
-    //        RepositionOnLand(other);
-    //    }
-    //    else if (other.transform.tag == "Enemy")
-    //    {
-    //        Explode(other.transform.GetComponent<Enemy>());
-    //        exploded = true;
-    //        Destroy(this.gameObject);
-    //    }
-    //}
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.transform.tag == "Ground" && !exploded)
-    //    {
-    //        RepositionOnLand(other);
-    //    }
-    //    else if (other.transform.tag == "Enemy")
-    //    {
-    //        Explode(other.transform.GetComponent<Enemy>());
-    //        exploded = true;
-    //        Destroy(this.transform.parent.gameObject);
-    //    }
-    //}
-
     public void Explode(Enemy target)
     {
         //Do fancy explosion stuff

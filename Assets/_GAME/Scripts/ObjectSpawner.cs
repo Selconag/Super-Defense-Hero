@@ -27,7 +27,16 @@ public class ObjectSpawner : MonoBehaviour
 
     private void Start()
     {
-        //v_SpawnPos = transform.position;
+        MenuManager.GameStarted += StartGameSequence;
+    }
+
+    private void OnDestroy()
+    {
+        MenuManager.GameStarted -= StartGameSequence;
+    }
+
+    public void StartGameSequence()
+    {
         SpawnNewObject();
     }
 

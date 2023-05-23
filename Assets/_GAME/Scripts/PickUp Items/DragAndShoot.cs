@@ -10,9 +10,10 @@ public class DragAndShoot : MonoBehaviour
     [Tooltip("Use objects Rigidbody Mass value as Force Multiplier?")]
     [SerializeField] protected bool m_UseObjectMass = false;
     [SerializeField] protected float forceMultiplier = 2;
+    [SerializeField] private bool isShoot;
+    [SerializeField] private float minimumThrowForce;
 
     private bool isFirstClick = true;
-    [SerializeField] private bool isShoot;
     private Vector3 m_TargetPos;
     private bool isClicking;
 
@@ -72,9 +73,10 @@ public class DragAndShoot : MonoBehaviour
     {
         if (isShoot)
             return;
+        if (Force.magnitude <= minimumThrowForce) return;
         
         //X => Force.x / Y => Force.y / Z => Force.y because on screen it is only X&Y Dimensions
-        objectToThrow.AddForce(new Vector3(Force.x, Force.y, Force.y) * forceMultiplier);
+        objectToThrow.AddForce(new Vector3(Force.x, Mathf.Abs(Force.y), Mathf.Abs(Force.y)) * forceMultiplier);
         objectToThrow.constraints = RigidbodyConstraints.None;
         objectToThrow.GetComponent<ThrowableObject>().Landed = false;
         StartCoroutine(ObjectSpawner.Instance.NewSpawnRequest());

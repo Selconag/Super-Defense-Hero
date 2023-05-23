@@ -7,7 +7,7 @@ public class ExplosionTrigger : MonoBehaviour
     public Mine Parent;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Ground" && !Parent.Exploded)
+        if (other.transform.tag == "Ground" && !Parent.Exploded && !Parent.Landed)
         {
             Parent.RepositionOnLand(other);
         }

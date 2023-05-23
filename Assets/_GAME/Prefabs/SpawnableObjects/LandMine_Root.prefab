@@ -194,7 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhysicalDamage: 30
   ObjectLevel: 1
-  Landed: 0
+  Landed: 1
   Rigidbody: {fileID: 332006175147240478}
   ExplosionInnerDamage: 130
   ExplosionOuterDamage: 100

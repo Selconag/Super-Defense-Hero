@@ -115,6 +115,10 @@ public class Enemy : MonoBehaviour
         m_Rend.SetPropertyBlock(MPB);
     }
 
+    public void Despawn()
+    {
+        StartCoroutine(DespawnWaiter());
+    }
 
     IEnumerator DespawnWaiter()
 	{
@@ -134,32 +138,30 @@ public class Enemy : MonoBehaviour
         transform.LookAt(m_Target);
 	}
 
-  //  private void OnEnable()
-  //  {
-  //      if(firstEnable)
-  //      m_Target = GameObject.FindGameObjectWithTag("Player").transform;
-  //      firstEnable = true;
-  //      walkEnd = false;
-  //      m_Controller.enabled = true;
-  //      health = m_EnemyProperties.Health;
+    private void OnEnable()
+    {
+        firstEnable = true;
+        walkEnd = false;
+        m_Controller.enabled = true;
+        health = m_EnemyProperties.Health;
 
-  //      if (Player.playerDeath) StopEnemy();
-  //      else Player.playerDeathEvent += StopEnemy;
-  //  }
+        if (Player.playerDeath) StopEnemy();
+        else Player.playerDeathEvent += StopEnemy;
+    }
 
-  //  private void OnDisable()
-  //  {
-  //      //If this was last enemy, Invoke level end with success
-  //      if (lastEnemy)
-		//{
-  //          if(GameObject.FindGameObjectsWithTag("Enemy").Length <= 1)
-  //              GameManager.levelEndStatus.Invoke(true);
-  //          Debug.Log("Last Enemy Killed");
-  //          lastEnemy = false;
-  //      }
-  //      walkEnd = false;
-  //      Player.playerDeathEvent -= StopEnemy;
-  //  }
+    private void OnDisable()
+    {
+        ////If this was last enemy, Invoke level end with success
+        //if (lastEnemy)
+        //{
+        //    if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 1)
+        //        GameManager.levelEndStatus.Invoke(true);
+        //    Debug.Log("Last Enemy Killed");
+        //    lastEnemy = false;
+        //}
+        walkEnd = false;
+        Player.playerDeathEvent -= StopEnemy;
+    }
 
 
     #region TakeDamage Efects

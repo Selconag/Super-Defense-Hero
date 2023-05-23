@@ -53,14 +53,16 @@ public class EntitySpawner : MonoBehaviour
 
     public int GetTargetPlayerLevel => targetPlayerLevel;
 
+
+
     void Start()
     {
         Player.playerDeathEvent += EndGame;
+        MenuManager.GameStarted += StartGameSequence;
         //GameManager.startGame += StartSpawningSequence;
         if (UseSpawnerLocation)
             position = transform.position;
 
-        StartSpawningSequence();
         //LevelManager.levelChange += DespawnAllEntities;
 
         //StartCoroutine(StartSpawningSequence());
@@ -77,6 +79,7 @@ public class EntitySpawner : MonoBehaviour
     private void OnDestroy()
     {
         Player.playerDeathEvent -= EndGame;
+        MenuManager.GameStarted -= StartGameSequence;
         //GameManager.startGame -= StartSpawningSequence;
         if (openWorld)
             Player.playerLevelEvent -= OpenWorldGameChecker;
@@ -89,7 +92,7 @@ public class EntitySpawner : MonoBehaviour
         LeanPool.DespawnAll();
     }
 
-    public void StartSpawningSequence()
+    public void StartGameSequence()
     {
         StartCoroutine(SpawningSequence());
     }
@@ -146,7 +149,8 @@ public class EntitySpawner : MonoBehaviour
                 for (int i = 0; i < entityAmount; i++)
                 {
                     lastEnemy = LeanPool.Spawn(m_EnemyList[Random.Range(0, m_EnemyList.Count)], new Vector3(position.x + Random.Range(minXVal, maxXVal), position.y, position.z + Random.Range(minZVal, maxZVal)), Quaternion.identity);
-                    lastEnemy.GetComponent<Enemy>().Target = entityTarget;
+                    var enemy = lastEnemy.GetComponent<Enemy>();
+                    enemy.Target = entityTarget;
                     lastEnemy.transform.SetParent(entityPool);
                     yield return new WaitForSeconds(spawnWaiter);
                 }

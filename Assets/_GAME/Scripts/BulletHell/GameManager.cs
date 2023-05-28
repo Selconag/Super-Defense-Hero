@@ -117,8 +117,8 @@ public class GameManager : MonoBehaviour
 		{
             //Get important variables to make a save
             //saveData.levelIndex = LevelManager.Instance.ActiveLevelInfo;
-			saveData.playerPos = Player.Instance.PlayerPosition;
-            saveData.tutorialPlayed = tutorialPlayed;
+			saveData.PlayerPos = Player.Instance.PlayerPosition;
+            saveData.TutorialPlayed = tutorialPlayed;
 
             //Overwrite the local save data
             jsonSaveData = JsonUtility.ToJson(saveData).ToString();
@@ -133,8 +133,8 @@ public class GameManager : MonoBehaviour
             //Create a local save data
             //JsonUtility.FromJsonOverwrite(json, myObject);
             //saveData.levelIndex = LevelManager.Instance.ActiveLevelInfo;
-            saveData.playerPos = Player.Instance.PlayerPosition;
-            saveData.tutorialPlayed = tutorialPlayed;
+            saveData.PlayerPos = Player.Instance.PlayerPosition;
+            saveData.TutorialPlayed = tutorialPlayed;
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(savePath, "Save.json")))
             {
                 outputFile.WriteLine(jsonSaveData);
@@ -156,8 +156,8 @@ public class GameManager : MonoBehaviour
                 Debug.Log(sr.ToString());
             }
             //LevelManager.Instance.ActiveLevelInfo = saveData.levelIndex;
-            Player.Instance.PlayerPosition = saveData.playerPos;
-            tutorialPlayed = saveData.tutorialPlayed;
+            Player.Instance.PlayerPosition = saveData.PlayerPos;
+            tutorialPlayed = saveData.TutorialPlayed;
             //LevelManager.Instance.SpawnLevel();
             return localMemoryEnable = true;
         }

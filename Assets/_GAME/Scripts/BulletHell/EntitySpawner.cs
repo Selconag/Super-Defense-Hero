@@ -57,7 +57,7 @@ public class EntitySpawner : MonoBehaviour
 
     void Start()
     {
-        Player.playerDeathEvent += EndGame;
+        Player.PlayerDeathEvent += EndGame;
         MenuManager.GameStarted += StartGameSequence;
         //GameManager.startGame += StartSpawningSequence;
         if (UseSpawnerLocation)
@@ -70,21 +70,21 @@ public class EntitySpawner : MonoBehaviour
         //Open world games cannot be endless!
         if (openWorld)
 		{
-            Player.playerLevelEvent += OpenWorldGameChecker;
+            Player.PlayerLevelEvent += OpenWorldGameChecker;
             endlessGame = false;
         }
 		else
-            Player.playerLevelEvent += NewSpawnSystem;
+            Player.PlayerLevelEvent += NewSpawnSystem;
     }
     private void OnDestroy()
     {
-        Player.playerDeathEvent -= EndGame;
+        Player.PlayerDeathEvent -= EndGame;
         MenuManager.GameStarted -= StartGameSequence;
         //GameManager.startGame -= StartSpawningSequence;
         if (openWorld)
-            Player.playerLevelEvent -= OpenWorldGameChecker;
+            Player.PlayerLevelEvent -= OpenWorldGameChecker;
         else
-            Player.playerLevelEvent -= NewSpawnSystem;
+            Player.PlayerLevelEvent -= NewSpawnSystem;
     }
 
     private void DespawnAllEntities()

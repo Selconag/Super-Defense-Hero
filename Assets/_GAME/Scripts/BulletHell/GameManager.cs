@@ -6,7 +6,7 @@ using System.IO;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
-    public static Action<bool> levelEndStatus;
+    public static Action<bool> LevelEndStatus;
     public static Action startGame;
     private static GameManager _instance;
 
@@ -60,8 +60,8 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
-        Player.playerLevelEvent += LevelUpEvent;
-        levelEndStatus += EndLevel;
+        Player.PlayerLevelEvent += LevelUpEvent;
+        LevelEndStatus += EndLevel;
         //LevelManager.levelChange += CloseMenuPanels;
         m_ExpBar.value = 0f;
         targetPlayerLevel = EntitySpawner.Instance.GetTargetPlayerLevel;
@@ -70,9 +70,9 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
 	{
-        levelEndStatus -= EndLevel;
+        LevelEndStatus -= EndLevel;
         //LevelManager.levelChange -= CloseMenuPanels;
-        Player.playerLevelEvent -= LevelUpEvent;
+        Player.PlayerLevelEvent -= LevelUpEvent;
 
     }
 
@@ -219,9 +219,9 @@ public class GameManager : MonoBehaviour
         //Open skills panel
         else
         {
-            Player.playerDeathEvent.Invoke();
+            Player.PlayerDeathEvent.Invoke();
             Player.Instance.PlayerIsDead = true;
-            levelEndStatus.Invoke(true);
+            LevelEndStatus.Invoke(true);
             SkillsPanel(false);
 
         }

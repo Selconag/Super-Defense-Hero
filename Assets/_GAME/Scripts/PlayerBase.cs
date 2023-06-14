@@ -27,6 +27,7 @@ public class PlayerBase : MonoBehaviour
             if(Health <= 0)
             {
                 stopGame = true;
+                Player.PlayerDeathEvent.Invoke();
             }
         }
             

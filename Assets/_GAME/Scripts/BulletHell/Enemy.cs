@@ -146,7 +146,7 @@ public class Enemy : MonoBehaviour
         health = m_EnemyProperties.Health;
 
         if (Player.playerDeath) StopEnemy();
-        else Player.playerDeathEvent += StopEnemy;
+        else Player.PlayerDeathEvent += StopEnemy;
     }
 
     private void OnDisable()
@@ -160,7 +160,7 @@ public class Enemy : MonoBehaviour
         //    lastEnemy = false;
         //}
         walkEnd = false;
-        Player.playerDeathEvent -= StopEnemy;
+        Player.PlayerDeathEvent -= StopEnemy;
     }
 
 

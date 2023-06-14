@@ -6,8 +6,8 @@ using System;
 using System.Threading.Tasks;
 public class Player : MonoBehaviour
 {
-	public static Action playerDeathEvent;
-	public static Action playerLevelEvent;
+	public static Action PlayerDeathEvent;
+	public static Action PlayerLevelEvent;
 	public static Action<int> playerGainExp;
 	public static bool playerDeath = false;
 
@@ -146,8 +146,8 @@ public class Player : MonoBehaviour
 			Debug.Log("Player is Dead");
 			m_PS.Play();
 			m_Animator.SetBool("Death", (true));
-			playerDeathEvent.Invoke();
-			GameManager.levelEndStatus.Invoke(false);
+			PlayerDeathEvent.Invoke();
+			GameManager.LevelEndStatus.Invoke(false);
 			//GameManager.levelEndStatus.Invoke(false);
 			playerDeath = true;
 			m_LaserSight.SetActive(false);
@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
 		{
 			experienceCurrent -= experienceMax;
 			playerLevel++;
-			playerLevelEvent.Invoke();
+			PlayerLevelEvent.Invoke();
 			experienceMax = (playerLevel * expPerLevelModifier) + 100;
 			GameManager.Instance.UpdateExperienceSystem(playerLevel);
 			//GameManager.Instance.SkillsPanel(true);
